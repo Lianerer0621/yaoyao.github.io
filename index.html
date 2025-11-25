@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>瑶瑶宝专用的药品清单</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            /* 库洛米主题配色 */
+            --kuromi-black: #0a0a0a;
+            --kuromi-dark-purple: #2d1b69;
+            --kuromi-purple: #4a148c;
+            --kuromi-light-purple: #6a1b9a;
+            --kuromi-pink: #e91e63;
+            --kuromi-light-pink: #f06292;
+            --kuromi-gray: #1a1a1a;
+            --kuromi-dark-gray: #151515;
+            --text-light: #f8f8f8;
+            --text-muted: #d1d1d1;
+            --accent-pink: #ff1493;
+            --accent-purple: #da70d6;
+            --glow-pink: #ff69b4;
+            --glow-purple: #9370db;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background: var(--kuromi-black);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 精美背景图层 - 预留背景图片位置 */
+        .background-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(135deg, var(--kuromi-black) 0%, var(--kuromi-dark-purple) 30%, var(--kuromi-purple) 70%, var(--kuromi-pink) 100%);
+            opacity: 0.9;
+        }
+
+        /* 背景图片占位区域 - 用户可以在这里放置自己的库洛米背景图 */
+        .background-image-placeholder {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(233, 30, 99, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(74, 20, 140, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(106, 27, 154, 0.2) 0%, transparent 50%);
+            /* 用户可以将背景图片URL放在这里 */
+            background-image: url('https://c-ssl.duitang.com/uploads/blog/202403/05/3BSO6Z6ghzXwjLE.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            opacity: 0.4;
+        }
+
+        /* 装饰性库洛米图案层 */
+        .kuromi-pattern-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="20" fill="rgba(233,30,99,0.1)">🖤</text></svg>'),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="20" fill="rgba(74,20,140,0.1)">💜</text></svg>'),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="20" fill="rgba(106,27,154,0.1)">🦴</text></svg>');
+            background-size: 200px 200px, 300px 300px, 250px 250px;
+            background-position: 0 0, 50px 50px, 100px 100px;
+            background-repeat: repeat;
+            opacity: 0.3;
+            animation: pattern-float 20s linear infinite;
+        }
+
+        @keyframes pattern-float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-200px); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Styles - 超精美库洛米风格 */
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 4rem 3rem;
+            background: linear-gradient(135deg, rgba(45, 27, 105, 0.9), rgba(74, 20, 140, 0.9));
+            border-radius: 30px;
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.6),
+                0 0 20px rgba(233, 30, 99, 0.3),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--accent-pink);
+            backdrop-filter: blur(10px);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(233, 30, 99, 0.3) 0%, 
+                rgba(106, 27, 154, 0.3) 50%,
+                rgba(233, 30, 99, 0.2) 100%);
+            z-index: 1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            text-shadow: 
+                0 0 10px var(--glow-pink),
+                0 0 20px var(--glow-pink),
+                0 0 30px var(--glow-purple),
+                0 3px 6px rgba(0,0,0,0.8);
+            letter-spacing: 2px;
+            animation: title-glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes title-glow {
+            from { text-shadow: 0 0 10px var(--glow-pink), 0 0 20px var(--glow-pink), 0 0 30px var(--glow-purple), 0 3px 6px rgba(0,0,0,0.8); }
+            to { text-shadow: 0 0 20px var(--glow-pink), 0 0 30px var(--glow-pink), 0 0 40px var(--glow-purple), 0 3px 6px rgba(0,0,0,0.8); }
+        }
+
+        .kuromi-icon {
+            font-size: 3rem;
+            color: var(--accent-pink);
+            margin: 0 1.5rem;
+            display: inline-block;
+            animation: kuromi-float 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px var(--accent-pink));
+        }
+
+        @keyframes kuromi-float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(-5deg); }
+            66% { transform: translateY(-5px) rotate(5deg); }
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--accent-pink);
+            font-weight: 500;
+            margin-top: 1.5rem;
+            text-shadow: 
+                0 0 10px var(--accent-pink),
+                0 2px 4px rgba(0,0,0,0.8);
+            letter-spacing: 1px;
+        }
+
+        /* 库洛米角色装饰区域 */
+        .kuromi-character-decoration {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 4rem;
+            color: var(--accent-pink);
+            opacity: 0.7;
+            z-index: 3;
+            animation: character-glow 4s ease-in-out infinite alternate;
+        }
+
+        .kuromi-character-decoration.left {
+            left: 2rem;
+        }
+
+        .kuromi-character-decoration.right {
+            right: 2rem;
+        }
+
+        @keyframes character-glow {
+            from { filter: drop-shadow(0 0 5px var(--accent-pink)); }
+            to { filter: drop-shadow(0 0 20px var(--accent-pink)); }
+        }
+
+        /* Love Note - 超精美库洛米风格 */
+        .love-note {
+            background: linear-gradient(135deg, 
+                rgba(106, 27, 154, 0.9), 
+                rgba(74, 20, 140, 0.9),
+                rgba(156, 39, 176, 0.9));
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border-left: 5px solid var(--accent-pink);
+            position: relative;
+            box-shadow: 
+                0 15px 35px rgba(106, 27, 154, 0.4),
+                0 0 25px rgba(233, 30, 99, 0.3);
+            backdrop-filter: blur(15px);
+            border: 2px solid var(--accent-pink);
+        }
+
+        .love-note::before {
+            content: '💜';
+            position: absolute;
+            top: -15px;
+            right: 25px;
+            font-size: 2.5rem;
+            filter: drop-shadow(0 0 10px var(--accent-pink));
+            animation: heart-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes heart-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .love-note p {
+            color: var(--text-light);
+            font-style: italic;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.7);
+            font-weight: 400;
+        }
+
+        /* Medicine Cards - 超精美库洛米风格 */
+        .medicine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .medicine-card {
+            background: linear-gradient(135deg, 
+                rgba(26, 26, 26, 0.95), 
+                rgba(44, 44, 44, 0.95),
+                rgba(66, 66, 66, 0.95));
+            border-radius: 25px;
+            padding: 2.5rem;
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.7),
+                0 0 30px rgba(233, 30, 99, 0.2),
+                inset 0 0 20px rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+            border-top: 5px solid var(--accent-pink);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(233, 30, 99, 0.4);
+            backdrop-filter: blur(20px);
+        }
+
+        .medicine-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(74, 20, 140, 0.2) 0%, 
+                rgba(106, 27, 154, 0.2) 50%,
+                rgba(233, 30, 99, 0.1) 100%);
+            z-index: 1;
+        }
+
+        .medicine-card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .medicine-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 
+                0 30px 60px rgba(233, 30, 99, 0.4),
+                0 0 40px rgba(233, 30, 99, 0.5);
+            border-top-color: var(--accent-purple);
+            border-color: var(--accent-purple);
+        }
+
+        .medicine-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 3px solid rgba(233, 30, 99, 0.4);
+        }
+
+        .medicine-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, 
+                var(--kuromi-dark-purple), 
+                var(--kuromi-pink),
+                var(--accent-purple));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            color: white;
+            font-size: 2.2rem;
+            box-shadow: 
+                0 8px 25px rgba(74, 20, 140, 0.6),
+                0 0 15px rgba(233, 30, 99, 0.4);
+            border: 3px solid var(--accent-pink);
+            animation: icon-glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes icon-glow {
+            from { box-shadow: 0 8px 25px rgba(74, 20, 140, 0.6), 0 0 15px rgba(233, 30, 99, 0.4); }
+            to { box-shadow: 0 8px 25px rgba(74, 20, 140, 0.8), 0 0 25px rgba(233, 30, 99, 0.8); }
+        }
+
+        .medicine-title {
+            flex: 1;
+        }
+
+        .medicine-title h3 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.8rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            text-shadow: 
+                0 0 10px var(--accent-pink),
+                0 2px 4px rgba(0,0,0,0.8);
+            letter-spacing: 1px;
+        }
+
+        .category-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, 
+                var(--kuromi-pink), 
+                var(--accent-purple),
+                var(--kuromi-light-purple));
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 2px solid var(--accent-pink);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+            box-shadow: 
+                0 5px 15px rgba(233, 30, 99, 0.4),
+                0 0 10px rgba(233, 30, 99, 0.3);
+            animation: tag-glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes tag-glow {
+            from { box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4), 0 0 10px rgba(233, 30, 99, 0.3); }
+            to { box-shadow: 0 5px 15px rgba(233, 30, 99, 0.6), 0 0 20px rgba(233, 30, 99, 0.5); }
+        }
+
+        .medicine-content {
+            display: grid;
+            gap: 1.2rem;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: flex-start;
+            padding: 1.2rem;
+            background: rgba(44, 44, 44, 0.8);
+            border-radius: 15px;
+            border-left: 5px solid var(--accent-pink);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .info-label {
+            font-weight: 700;
+            color: var(--accent-pink);
+            margin-right: 1.2rem;
+            min-width: 90px;
+            flex-shrink: 0;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+            font-size: 1rem;
+        }
+
+        .info-content {
+            flex: 1;
+            color: var(--text-light);
+            line-height: 1.7;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            font-size: 1rem;
+        }
+
+        .english-name {
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, 
+                rgba(229, 62, 62, 0.3), 
+                rgba(244, 67, 54, 0.2));
+            border: 2px solid var(--accent-pink);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            position: relative;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px rgba(229, 62, 62, 0.3);
+        }
+
+        .warning-box::before {
+            content: '🖤';
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            font-size: 1.5rem;
+            filter: drop-shadow(0 0 10px var(--accent-pink));
+            animation: warning-icon-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes warning-icon-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        .warning-title {
+            display: flex;
+            align-items: center;
+            color: var(--accent-pink);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+        }
+
+        .warning-title i {
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .warning-content {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.7;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* Love Footer - 超精美库洛米风格 */
+        .love-footer {
+            background: linear-gradient(135deg, 
+                rgba(45, 27, 105, 0.95), 
+                rgba(74, 20, 140, 0.95),
+                rgba(106, 27, 154, 0.95));
+            border-radius: 30px;
+            padding: 4rem 3rem;
+            text-align: center;
+            margin-top: 4rem;
+            box-shadow: 
+                0 20px 40px rgba(74, 20, 140, 0.5),
+                0 0 30px rgba(233, 30, 99, 0.4),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            border: 3px solid var(--accent-pink);
+            backdrop-filter: blur(20px);
+        }
+
+        .love-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(233, 30, 99, 0.3) 0%, 
+                rgba(106, 27, 154, 0.3) 50%,
+                rgba(233, 30, 99, 0.2) 100%);
+            z-index: 1;
+        }
+
+        .love-footer-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .love-message {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.8rem;
+            color: var(--text-light);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            text-shadow: 
+                0 0 15px var(--accent-pink),
+                0 2px 4px rgba(0,0,0,0.8);
+            letter-spacing: 1px;
+        }
+
+        .signature {
+            font-size: 1.4rem;
+            color: var(--accent-pink);
+            font-weight: 600;
+            margin-top: 1.5rem;
+            text-shadow: 
+                0 0 15px var(--accent-pink),
+                0 2px 4px rgba(0,0,0,0.8);
+            letter-spacing: 1px;
+        }
+
+        .kuromi-heart {
+            display: inline-block;
+            color: var(--accent-pink);
+            animation: kuromi-heart-glow 2s ease-in-out infinite alternate;
+            font-size: 1.5rem;
+        }
+
+        @keyframes kuromi-heart-glow {
+            from { 
+                text-shadow: 0 0 15px var(--accent-pink);
+                transform: scale(1);
+            }
+            to { 
+                text-shadow: 0 0 30px var(--accent-pink), 0 0 40px var(--accent-pink);
+                transform: scale(1.1);
+            }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .medicine-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .medicine-card {
+                padding: 2rem;
+            }
+            
+            .kuromi-character-decoration {
+                display: none;
+            }
+        }
+
+        /* 打印样式 */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .medicine-card {
+                break-inside: avoid;
+                margin-bottom: 1rem;
+                box-shadow: none;
+                border: 1px solid #ccc;
+                background: white;
+                color: black;
+            }
+            
+            .medicine-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .header, .love-footer {
+                background: #f0f0f0;
+                color: black;
+            }
+            
+            .background-layer, .background-image-placeholder, .kuromi-pattern-layer {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 精美背景图层 -->
+    <div class="background-layer"></div>
+    
+    <!-- 背景图片占位区域 - 用户可以在这里放置自己的库洛米背景图 -->
+    <div class="background-image-placeholder"></div>
+    
+    <!-- 库洛米装饰图案层 -->
+    <div class="kuromi-pattern-layer"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="kuromi-character-decoration left">🖤</div>
+            <div class="kuromi-character-decoration right">💜</div>
+            <div class="header-content">
+                <span class="kuromi-icon">💜</span>
+                <h1>瑶瑶宝贝专用的药品清单</h1>
+                <span class="kuromi-icon">🖤</span>
+                <p class="subtitle">老公给瑶瑶的贴心小药箱💝</p>
+            </div>
+        </header>
+
+        <!-- Love Note -->
+        <div class="love-note">
+            <p>我最爱的瑶瑶宝，这些都是老公为你精心准备的常用药品，希望你在需要的时候能够及时找到合适的药物。每一种药都有详细的说明和注意事项，一定要仔细阅读哦～</p>
+        </div>
+
+        <!-- Medicine Grid -->
+        <main class="medicine-grid">
+            <!-- 抗感染药物 -->
+            <div class="medicine-card">
+                <div class="medicine-card-content">
+                    <div class="medicine-header">
+                        <div class="medicine-icon">
+                            <i class="fas fa-capsules"></i>
+                        </div>
+                        <div class="medicine-title">
+                            <h3>阿莫西林</h3>
+                            <span class="category-tag">抗感染</span>
+                        </div>
+                    </div>
+                    <div class="medicine-content">
+                        <div class="info-row">
+                            <span class="info-label">适应症：</span>
+                            <span class="info-content">细菌感染（呼吸道、泌尿道、皮肤软组织）、扁桃体发炎、中耳炎</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">英文名：</span>
+                            <span class="info-content english-name">Amoxicillin</span>
+                        </div>
+                    </div>
+                    <div class="warning-box">
+                        <div class="warning-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>宝贝注意</span>
+                        </div>
+                        <div class="warning-content">
+                            • 不能喝酒哦，会影响药效和可能引起过敏<br>
+                            • 如果胃不舒服最好饭后吃<br>
+                            • 不要和其他抗生素一起吃<br>
+                            • 吃药后2小时内不要喝牛奶
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="medicine-card">
+                <div class="medicine-card-content">
+                    <div class="medicine-header">
+                        <div class="medicine-icon">
+                            <i class="fas fa-virus"></i>
+                        </div>
+                        <div class="medicine-title">
+                            <h3>奥司他韦</h3>
+                            <span class="category-tag">抗病毒</span>
+                        </div>
+                    </div>
+                    <div class="medicine-content">
+                        <div class="info-row">
+                            <span class="info-label">适应症：</span>
+                            <span class="info-content">甲乙流感（A/B型流感）</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">英文名：</span>
+                            <span class="info-content english-name">Oseltamivir</span>
+                        </div>
+                    </div>
+                    <div class="warning-box">
+                        <div class="warning-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>宝贝注意</span>
+                        </div>
+                        <div class="warning-content">
+                            • 饭后吃或者和食物一起吃，可以减少胃肠道刺激哦
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 解热镇痛 -->
+            <div class="medicine-card">
+                <div class="medicine-card-content">
+                    <div class="medicine-header">
+                        <div class="medicine-icon">
+                            <i class="fas fa-thermometer-half"></i>
+                        </div>
+                        <div class="medicine-title">
+                            <h3>精氨酸布洛芬</h3>
+                            <span class="category-tag">解热镇痛</span>
+                        </div>
+                    </div>
+                    <div class="medicine-content">
+                        <div class="info-row">
+                            <span class="info-label">适应症：</span>
+                            <span class="info-content">头痛、牙痛、肌肉痛、痛经、感冒/流感引起的发热</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">英文名：</span>
+                            <span class="info-content english-name">Ibuprofen Arginine/Ibuprofen</span>
+                        </div>
+                    </div>
+                    <div class="warning-box">
+                        <div class="warning-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>宝贝注意</span>
+                        </div>
+                        <div class="warning-content">
+                            • 如果胃疼或者胃不舒服就不要用哦<br>
+                            • 有消化道溃疡或出血千万不能用<br>
+                            • 喝酒前后都不能用<br>
+                            • 不能和阿司匹林等非甾体抗炎药一起用
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="medicine-card">
+                <div class="medicine-card-content">
+                    <div class="medicine-header">
+                        <div class="medicine-icon">
+                            <i class="fas fa-head-side-cough-slash"></i>
+                        </div>
+                        <div class="medicine-title">
+                            <h3>复方氨酚烷</h3>
+                            <span class="category-tag">抗感冒</span>
+                        </div>
+                    </div>
+                    <div class="medicine-content">
+                        <div class="info-row">
+                            <span class="info-label">适应症：</span>
+                            <span class="info-content">普通风寒感冒，甲流引起的轻-中度疼痛/酸疼、发热</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">英文名：</span>
+                            <span class="info-content english-name">Compound Paracetamol & Amantadine</span>
+                        </div>
+                    </div>
+                    <div class="warning-box">
+                        <div class="warning-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>宝贝注意</span>
+                        </div>
+                        <div class="warning-content">
+                            • 不能和含对乙酰氨基酚的其他感冒药一起吃（如泰诺、39感冒灵等）<br>
+                            • 不要和布洛芬、阿司匹林等非甾体抗炎药一起用<br>
+                            • 不能和辉瑞的Paxlovid一起用
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 胃肠用药 -->
+            <div class="medicine-card">
+                <div class="medicine-card-content">
+                    <div class="medicine-header">
+                        <div class="medicine-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="medicine-title">
+                            <h3>铝碳酸镁</h3>
+                            <span class="category-tag">胃食管不适</span>
+                        </div>
+                    </div>
+                    <div class="medicine-content">
+                        <div class="info-row">
+                            <span class="info-label">适应症：</span>
+                            <span class="info-content">烧心、反酸、上腹痛、酒后胃疼</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">英文名：</span>
+                            <span class="info-content english-name">Hydrotalcite</span>
+                        </div>
+                    </div>
+                    <div class="warning-box">
+                        <div class="warning-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>宝贝注意</span>
+                        </div>
+                        <div class="warning-content">
+                            • 要嚼碎后咽下，不要整片吞下哦<br>
+                            • 饭后1-2小时吃，或者胃疼严重时吃<br>
+                            • 不能连续吃很多天（超过7天要看医生）
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="medicine-card">
+                <div class="medicine-card-content">
+                    <div class="medicine-header">
+                        <div class="medicine-icon">
+                            <i class="fas fa-dizzy"></i>
+                        </div>
+                        <div class="medicine-title">
+                            <h3>多潘立酮</h3>
+                            <span class="category-tag">胃动力不足</span>
+                        </div>
+                    </div>
+                    <div class="medicine-content">
+                        <div class="info-row">
+                            <span class="info-label">适应症：</span>
+                            <span class="info-content">餐后饱胀、恶心、呕吐</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">英文名：</span>
+                            <span class="info-content english-name">Domperidone</span>
+                        </div>
+                    </div>
+                    <div class="warning-box">
+                        <div class="warning-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>宝贝注意</span>
+                        </div>
+                        <div class="warning-content">
+                            • 避免和铝碳酸镁同时服用<br>
+                            • 禁止和克拉霉素、红霉素、阿奇霉素等抗生素同时服用
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="medicine-card">
+                <div class="medicine-card-content">
+                    <div class="medicine-header">
+                        <div class="medicine-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <div class="medicine-title">
+                            <h3>蒙脱石散</h3>
+                            <span class="category-tag">腹泻/肠道</span>
+                        </div>
+                    </div>
+                    <div class="medicine-content">
+                        <div class="info-row">
+                            <span class="info-label">适应症：</span>
+                            <span class="info-content">急性水样便、旅行者腹泻</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">英文名：</span>
+                            <span class="info-content english-name">Smectite Powder (Diosmectite)</span>
+                        </div>
+                    </div>
+                    <div class="warning-box">
+                        <div class="warning-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>宝贝注意</span>
+                        </div>
+                        <div class="warning-content">
+                            • 避免和阿莫西林、左氧氟沙星等抗生素同时服用<br>
+                            • 避免和益生菌同时服用，会影响益生菌的效果
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 过敏用药 -->
+            <div class="medicine-card">
+                <div class="medicine-card-content">
+                    <div class="medicine-header">
+                        <div class="medicine-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <div class="medicine-title">
+                            <h3>氯雷他定</h3>
+                            <span class="category-tag">过敏/荨麻疹</span>
+                        </div>
+                    </div>
+                    <div class="medicine-content">
+                        <div class="info-row">
+                            <span class="info-label">适应症：</span>
+                            <span class="info-content">打喷嚏、流涕、皮疹、瘙痒</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">英文名：</span>
+                            <span class="info-content english-name">Loratadine</span>
+                        </div>
+                    </div>
+                    <div class="warning-box">
+                        <div class="warning-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>宝贝注意</span>
+                        </div>
+                        <div class="warning-content">
+                            • 避免和克拉霉素、红霉素、阿奇霉素等抗生素同时服用
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 外用药膏 -->
+            <div class="medicine-card">
+                <div class="medicine-card-content">
+                    <div class="medicine-header">
+                        <div class="medicine-icon">
+                            <i class="fas fa-hand-holding-medical"></i>
+                        </div>
+                        <div class="medicine-title">
+                            <h3>红霉素软膏</h3>
+                            <span class="category-tag">外用抗菌</span>
+                        </div>
+                    </div>
+                    <div class="medicine-content">
+                        <div class="info-row">
+                            <span class="info-label">适应症：</span>
+                            <span class="info-content">小伤口、毛囊炎、轻度烫伤</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">英文名：</span>
+                            <span class="info-content english-name">Erythromycin Ointment</span>
+                        </div>
+                    </div>
+                    <div class="warning-box">
+                        <div class="warning-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>宝贝注意</span>
+                        </div>
+                        <div class="warning-content">
+                            • 不能用在眼部哦<br>
+                            • 如果有结膜炎或眼部细菌感染，要用专门的红霉素眼膏
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="medicine-card">
+                <div class="medicine-card-content">
+                    <div class="medicine-header">
+                        <div class="medicine-icon">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <div class="medicine-title">
+                            <h3>氧化锌软膏</h3>
+                            <span class="category-tag">外用止痒</span>
+                        </div>
+                    </div>
+                    <div class="medicine-content">
+                        <div class="info-row">
+                            <span class="info-label">适应症：</span>
+                            <span class="info-content">荨麻疹、轻度湿疹、虫咬</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">英文名：</span>
+                            <span class="info-content english-name">Desitin, Zincofax, Sudocrem</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Love Footer -->
+        <footer class="love-footer">
+            <div class="love-footer-content">
+                <div class="love-message">
+                    <span class="kuromi-heart">🖤</span>
+                    希望瑶瑶宝宝在外面健健康康，平平安安
+                    <span class="kuromi-heart">💜</span>
+                </div>
+                <div class="signature">
+                    老公永远爱你，照顾好自己哦～
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // 精美库洛米主题交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 创建精美的库洛米装饰元素动画
+            function createKuromiEffect() {
+                const effects = ['🖤', '💜', '🦴', '💀', '🎀', '🌙', '💗'];
+                const effect = document.createElement('div');
+                effect.innerHTML = effects[Math.floor(Math.random() * effects.length)];
+                effect.style.position = 'fixed';
+                effect.style.left = Math.random() * 100 + 'vw';
+                effect.style.top = '100vh';
+                effect.style.fontSize = Math.random() * 30 + 20 + 'px';
+                effect.style.pointerEvents = 'none';
+                effect.style.zIndex = '1000';
+                effect.style.opacity = '0.8';
+                effect.style.color = Math.random() > 0.5 ? '#ff1493' : '#da70d6';
+                effect.style.filter = 'drop-shadow(0 0 10px currentColor)';
+                
+                document.body.appendChild(effect);
+                
+                const animation = effect.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 0.8 },
+                    { transform: 'translateY(-100vh) rotate(360deg)', opacity: 0 }
+                ], {
+                    duration: Math.random() * 5000 + 4000,
+                    easing: 'ease-out'
+                });
+                
+                animation.onfinish = () => {
+                    effect.remove();
+                };
+            }
+            
+            // 创建精美的飘浮效果
+            setInterval(createKuromiEffect, 3000);
+            
+            // 添加鼠标跟随效果
+            document.addEventListener('mousemove', function(e) {
+                if (Math.random() > 0.98) {
+                    const sparkle = document.createElement('div');
+                    sparkle.innerHTML = '✨';
+                    sparkle.style.position = 'fixed';
+                    sparkle.style.left = e.clientX + 'px';
+                    sparkle.style.top = e.clientY + 'px';
+                    sparkle.style.fontSize = '20px';
+                    sparkle.style.pointerEvents = 'none';
+                    sparkle.style.zIndex = '9999';
+                    sparkle.style.color = '#ff1493';
+                    
+                    document.body.appendChild(sparkle);
+                    
+                    sparkle.animate([
+                        { transform: 'scale(0) rotate(0deg)', opacity: 1 },
+                        { transform: 'scale(1.5) rotate(180deg)', opacity: 0 }
+                    ], {
+                        duration: 1000,
+                        easing: 'ease-out'
+                    }).onfinish = () => sparkle.remove();
+                }
+            });
+            
+            console.log('老公永远爱你🖤💜');
+        });
+    </script>
+</body>
+</html>
